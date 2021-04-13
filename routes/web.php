@@ -45,3 +45,16 @@ Route::post('/store', 'PelangganController@store')->name('pelanggan.store');
 Route::put('/update/{id}', 'PelangganController@update')->name('pelanggan.update');
 Route::delete('/destroy', 'PelangganController@destroy')->name('pelanggan.destroy');
 Route::delete('/destroy{id}', 'PelangganController@destroy')->name('pelanggan.destroy');
+
+//makanan
+Route::resource('makanan','MakananController');
+Route::get('/index', 'MakananController@index')->name('makanan.index');
+Route::get('/create', 'MakananController@create')->name('makanan.create');
+Route::get('/edit', 'MakananController@edit')->name('makanan.edit');
+Route::get('/edit/{id}', 'MakananController@edit')->name('makanan.edit');
+Route::get('/show', 'MakananController@show')->name('makanan.show');
+Route::get('/show/{id}', 'MakananController@show')->name('makanan.show');
+Route::post('/store', 'MakananController@store')->name('makanan.store');
+Route::put('/update/{id}', 'MakananController@update')->name('makanan.update');
+Route::delete('/destroy', 'MakananController@destroy')->name('makanan.destroy');
+Route::delete('/destroy{id}', 'MakananController@destroy')->name('makanan.destroy');
