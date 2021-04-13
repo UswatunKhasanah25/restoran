@@ -20,6 +20,19 @@ Route::get('beranda', function() {
     return view('beranda');
 });
 
+// kategori
+Route::resource('kategori','KategoriController');
+Route::get('/index', 'KategoriController@index')->name('kategori.index');
+Route::get('/create', 'KategoriController@create')->name('kategori.create');
+Route::get('/edit', 'KategoriController@edit')->name('kategori.edit');
+Route::get('/edit/{id}', 'KategoriController@edit')->name('kategori.edit');
+Route::get('/show', 'KategoriController@show')->name('kategori.show');
+Route::get('/show/{id}', 'KategoriController@show')->name('kategori.show');
+Route::post('/store', 'KategoriController@store')->name('kategori.store');
+Route::put('/update/{id}', 'KategoriController@update')->name('kategori.update');
+Route::delete('/destroy', 'KategoriController@destroy')->name('kategori.destroy');
+Route::delete('/destroy{id}', 'KategoriController@destroy')->name('kategori.destroy');
+
 // pelanggan
 Route::resource('pelanggan','PelangganController');
 Route::get('/index', 'PelangganController@index')->name('pelanggan.index');

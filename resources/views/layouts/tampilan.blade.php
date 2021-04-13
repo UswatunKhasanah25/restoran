@@ -49,6 +49,9 @@
                         <a href="/beranda"> <i class="menu-icon fa fa-dashboard"></i>Beranda </a>
                     </li>
                     <li>
+                        <a href="/kategori"> <i class="menu-icon fa fa-shopping-cart"></i>Kategori</a>
+                    </li>
+                    <li>
                         <a href="/makanan"> <i class="menu-icon fa fa-shopping-cart"></i>Data Makanan</a>
                     </li>
                     <li>
