@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Kategori;
 use App\Makanan;
 use Illuminate\Http\Request;
+use PDF;
 
 class MakananController extends Controller
 {
@@ -15,9 +16,16 @@ class MakananController extends Controller
     public function index()
     {
         $makanans = Makanan::paginate(5);
-  
-        return view('makanan.index',compact('makanans'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+
+        return view('makanan.index', compact('makanans'))->with(
+            'i',
+            (request()->input('page', 1) - 1) * 5
+        );
+    }
+
+    public function index2()
+    {
+        return view('makanan.makananUser');
     }
 
     /**
@@ -28,7 +36,7 @@ class MakananController extends Controller
     public function create()
     {
         $kategori = Kategori::all();
-        return view('makanan.create',compact('kategori'));
+        return view('makanan.create', compact('kategori'));
     }
 
     /**
@@ -42,24 +50,25 @@ class MakananController extends Controller
         $request->validate([
             'nama' => 'required',
             'id_kategori' => 'required',
-            'harga' => 'required', 
+            'harga' => 'required',
             'stok' => 'required',
             'photo' => 'required',
         ]);
-        
-        $makanan = new Makanan;
+
+        $makanan = new Makanan();
         $makanan->nama = $request->nama;
         $makanan->id_kategori = $request->id_kategori;
         $makanan->harga = $request->harga;
         $makanan->stok = $request->stok;
-        
-        if($request->file('photo')){
-            $image_name = $request->file('photo')->store('images','public');
+
+        if ($request->file('photo')) {
+            $image_name = $request->file('photo')->store('images', 'public');
             $makanan->photo = $image_name;
         }
         $makanan->save();
-        return redirect()->route('makanan.index')
-                        ->with('success','Makanan berhasil ditambahkan');
+        return redirect()
+            ->route('makanan.index')
+            ->with('success', 'Makanan berhasil ditambahkan');
     }
 
     /**
@@ -71,7 +80,7 @@ class MakananController extends Controller
     public function show($id)
     {
         $makanan = \App\Makanan::find($id);
-        return view('makanan.show',compact('makanan'));
+        return view('makanan.show', compact('makanan'));
     }
 
     /**
@@ -84,7 +93,7 @@ class MakananController extends Controller
     {
         $kategori = Kategori::all();
         $makanan = \App\Makanan::find($id);
-        return view('makanan.edit',compact('makanan','kategori'));
+        return view('makanan.edit', compact('makanan', 'kategori'));
     }
 
     /**
@@ -98,10 +107,10 @@ class MakananController extends Controller
     {
         $makanan = \App\Makanan::find($id);
         $request->validate([
-            'nama' => 'required', 
+            'nama' => 'required',
             'id_kategori' => 'required',
-            'harga' => 'required', 
-            'stok' => 'required', 
+            'harga' => 'required',
+            'stok' => 'required',
             'photo' => 'required',
         ]);
         $makanan->nama = $request->nama;
@@ -109,17 +118,20 @@ class MakananController extends Controller
         $makanan->harga = $request->harga;
         $makanan->stok = $request->stok;
 
-        if($makanan->photo && file_exists(storage_path('app/public/' . $makanan->photo)))
-        {
-            \Storage::delete('public/'.$makanan->photo);
+        if (
+            $makanan->photo &&
+            file_exists(storage_path('app/public/' . $makanan->photo))
+        ) {
+            \Storage::delete('public/' . $makanan->photo);
         }
         $image_name = $request->file('photo')->store('images', 'public');
         $makanan->photo = $image_name;
 
         $makanan->save();
-  
-        return redirect()->route('makanan.index')
-                        ->with('success','Data Makanan Berhasil Diupdate');
+
+        return redirect()
+            ->route('makanan.index')
+            ->with('success', 'Data Makanan Berhasil Diupdate');
     }
 
     /**
@@ -132,8 +144,24 @@ class MakananController extends Controller
     {
         $makanan = \App\Makanan::find($id);
         $makanan->delete();
-  
-        return redirect()->route('makanan.index')
-                        ->with('success','Makanan Berhasil Dihapus');
+
+        return redirect()
+            ->route('makanan.index')
+            ->with('success', 'Makanan Berhasil Dihapus');
+    }
+
+    public function cetak_pdf()
+    {
+        $makanans = Makanan::all();
+
+        $pdf = PDF::loadview('makanan_pdf', ['makanan' => $makanans]);
+        return $pdf->download('laporan-makanan-pdf');
+    }
+
+    public function bukuPdf()
+    {
+        $datas = Buku::all();
+        $pdf = PDF::loadView('laporan.buku_pdf', compact('datas'));
+        return $pdf->download('laporan_buku_' . date('Y-m-d_H-i-s') . '.pdf');
     }
 }

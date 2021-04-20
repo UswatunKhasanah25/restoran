@@ -42,70 +42,39 @@
                     aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
                 </button>
-                @if(Auth::user()->level == 'admin')
-                <a class="navbar-brand" href="/beranda">Admin Kedai</a>
-                @endif
-                @if(Auth::user()->level == 'user')
-                <a class="navbar-brand" href="/beranda">Pelanggan</a>
-                @endif
-                <a class="navbar-brand hidden" href="/beranda"></a>
+
+                <a class="navbar-brand" href="./">Admin Kedai</a>
+                <a class="navbar-brand hidden" href="./"></a>
 
             </div>
 
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    @if(Auth::user()->level == 'user')
                     <li>
-                        <a href="/berandaUser"> <i class="menu-icon fa fa-dashboard"></i>Beranda </a>
+                        <a href="index.html"> <i class="menu-icon fa fa-dashboard"></i>Beranda </a>
                     </li>
                     <li>
-                        <a href="#"> <i class="menu-icon fa fa-dashboard"></i>promo </a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false"> <i class="menu-icon fa fa-shopping-cart"></i>Entri Referensi</a>
                     </li>
                     <li>
-                        <a href="/makananUser"> <i class="menu-icon fa fa-shopping-cart"></i>tambah pesanan</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Entri Order</a>
                     </li>
                     <li>
-                        <a href="#"> <i class="menu-icon fa fa-shopping-cart"></i>cara order</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false"> <i class="menu-icon fa fa-money"></i>Entri Transaksi</a>
                     </li>
                     <li>
-                        <a href="/login">
-                            {{ __('Logout') }}
-                        </a>
-                    </li>
-                    @endif
-                    @if(Auth::user()->level == 'admin')
-                    <li>
-                        <a href="/beranda"> <i class="menu-icon fa fa-dashboard"></i>Beranda </a>
-                    </li>
-                    <li>
-                        <a href="/kategori"> <i class="menu-icon fa fa-shopping-cart"></i>Kategori</a>
-                    </li>
-                    <li>
-                        <a href="/makanan"> <i class="menu-icon fa fa-shopping-cart"></i>Data Makanan</a>
-                    </li>
-                    <li>
-                        <a href="/pelanggan"> <i class="menu-icon fa fa-shopping-cart"></i>Data Pelanggan</a>
-                    </li>
-                    <li>
-                        <a href="/pemesanan"> <i class="menu-icon fa fa-table"></i>Data Pemesanan</a>
-                    </li>
-                    <li>
-                        <a href="/transaksi" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false"> <i class="menu-icon fa fa-money"></i>Data Transaksi</a>
-                    </li>
-                    <li>
-                        <a href="/laporan" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false"> <i class="menu-icon fa fa-file-text"></i>Generate Laporan</a>
                     </li>
 
                     <h3 class="menu-title"></h3><!-- /.menu-title -->
 
                     <li>
-                        <a href="/login">
-                            {{ __('Logout') }}
-                        </a>
+                        <a href="widgets.html"> Logout</a>
                     </li>
-                    @endif
                 </ul>
             </div><!-- /.navbar-collapse -->
         </nav>
@@ -247,19 +216,70 @@
 
         </header><!-- /header -->
         <!-- Header-->
-        @yield('content')
+
+        <div class="col-md-6 col-lg-3">
+            <div class="card bg-flat-color-1 text-light">
+                <div class="card-body">
+                    <div>Administrator</div>
+                    <h2>
+                        <center>1</center>
+                    </h2>
+                    <small class="text-light">Administrator</small>
+                </div>
+            </div>
+        </div>
+        <!--/.col-->
+
+        <div class="col-md-6 col-lg-3">
+            <div class="card bg-flat-color-3 text-light">
+                <div class="card-body">
+                    <div>Waiter</div>
+                    <h2>
+                        <center>1</center>
+                    </h2>
+                    <small class="text-light">Waiter</small>
+                </div>
+            </div>
+        </div>
+        <!--/.col-->
+
+        <div class="col-md-6 col-lg-3">
+            <div class="card bg-flat-color-4 text-light">
+                <div class="card-body">
+                    <div>Kasir</div>
+                    <h2>
+                        <center>1</center>
+                    </h2>
+                    <small class="text-light">Kasir</small>
+                </div>
+            </div>
+        </div>
+        <!--/.col-->
+
+        <div class="col-md-6 col-lg-3">
+            <div class="card bg-flat-color-2 text-light">
+                <div class="card-body">
+                    <div>Pelanggan</div>
+                    <h2>
+                        <center>1</center>
+                    </h2>
+                    <small class="text-light">Pelanggan</small>
+                </div>
+            </div>
+        </div>
+        <!--/.col-->
+
+        <div class="content mt-3">
+            <div class="animated fadeIn">
+                <div class="row">
+                </div>
+                <!-- Right Panel -->
 
 
-
-    </div><!-- /#right-panel -->
-
-    <!-- Right Panel -->
-
-
-    <script src="{{asset('style/assets/js/vendor/jquery-2.1.4.min.js')}}"></script>
-    <script src="{{asset('style/assets/js/popper.min.js')}}"></script>
-    <script src="{{asset('style/assets/js/plugins.js')}}"></script>
-    <script src="{{asset('style/assets/js/main.js')}}"></script>
+                <script src="{{asset('style/assets/js/vendor/jquery-2.1.4.min.js')}}"></script>
+                <script src="{{asset('style/assets/js/popper.min.js')}}"></script>
+                <script src="{{asset('style/assets/js/plugins.js')}}"></script>
+                <script src="{{asset('style/assets/js/main.js')}}"></script>
 
 
 </body>
