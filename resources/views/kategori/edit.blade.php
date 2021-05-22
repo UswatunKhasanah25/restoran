@@ -1,10 +1,30 @@
-@extends('layouts.tampilan')
-   
+@extends('layouts.admin')
+
+@section('style')
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{{ asset('assets/dashboard/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') }}">
+    <!-- PNotify -->
+    <link href="{{ asset('assets/pnotify/dist/pnotify.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/pnotify/dist/pnotify.buttons.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/pnotify/dist/pnotify.nonblock.css') }}" rel="stylesheet">
+    <style type="text/css">
+        #modal-detail .row {
+            margin-bottom: 5px
+        }
+
+        #modal-detail hr {
+            margin: 10px 0;
+        }
+    </style>
+@endsection 
+  
 @section('content')
+<div class="content-wrapper">
+    <section class="content-header">
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Edit Category</h2>
+                <h2>Edit Kategori</h2>
             </div>
             <div class="pull-right">
                 <a class="btn btn-primary" href="{{ route('kategori.index') }}"> Back</a>
@@ -22,7 +42,10 @@
             </ul>
         </div>
     @endif
-   
+</section>
+<section class="content">
+    <div class="box box-primary">
+        <div class="box-body">
     <form action="{{ route('kategori.update',$kategori->id) }}" method="POST">
         @csrf
         @method('PUT')
@@ -40,4 +63,6 @@
         </div>
    
     </form>
+        </div>
+    </div>
 @endsection

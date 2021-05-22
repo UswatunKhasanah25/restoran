@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Makanan;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $makanans = Makanan::orderBy('updated_at', 'ASC')->paginate(8);
+        return view('home', compact('makanans'));
     }
 }

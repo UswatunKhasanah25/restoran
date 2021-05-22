@@ -1,29 +1,44 @@
-@extends('layouts.app')
+@extends('layouts.user')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                    <div class="alert alert-success" role="alert">
-                        {{ session('status') }}
+    <div class="container">
+        <div class="col-md-16 col-md-offset-2">
+            <h2 class="page-header">
+                <strong>Menu Makanan</strong>
+            </h2>
+            <div class="row">
+                @foreach ($makanans as $makanan)
+                    <div class="col-md-3">
+                        <div class="panel panel-default card">
+                            <div class="panel-heading">
+                                <img src="{{ asset('storage/'.$makanan->photo) }}" class="img-responsive center-block" style="height: 180px">
+                            </div>
+                            <div class="panel-body">
+                                <h4>{{ $makanan->nama }}</h4>
+                                <p><strong>Harga : </strong> Rp. {{ number_format($makanan->harga,0,',','.') }},- / Porsi</p>
+                                <p><strong>Stok  : </strong> {{ $makanan->stok}} </p>
+                                <hr>
+                                <div class="text-right">
+                                    <form>
+                                        <a href="{{ route('getPemesanan', $makanan->id) }}" class="btn btn-primary">Pesan Sekarang <i class="fa fa-fw fa-chevron-circle-right"></i></a>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
-                    @if(Auth::user()->level == 'admin')
-                    <a href="beranda" class="btn btn-primary">Lanjut</a>
-                    @endif
-                    @if(Auth::user()->level == 'user')
-                    <a href="berandaUser" class="btn btn-primary">Lanjut</a>
-                    @endif
-                </div>
+                @endforeach
             </div>
-        </div>
+            <div class="row text-center">
+                {{ $makanans->links() }}
+            </div>
+        </div>  
     </div>
-</div>
+@endsection
+
+@section('scripts')
+    <script>
+        $(document).ready(function() {
+            $('[data-toggle="popover"]').popover();
+        });
+    </script>
 @endsection

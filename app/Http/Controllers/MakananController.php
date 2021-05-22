@@ -25,7 +25,12 @@ class MakananController extends Controller
 
     public function index2()
     {
-        return view('makanan.makananUser');
+        $makanans = Makanan::paginate(10);
+
+        return view('makanan.makananUser', compact('makanans'))->with(
+            'i',
+            (request()->input('page', 1) - 1) * 5
+        );
     }
 
     /**

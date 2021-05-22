@@ -13,4 +13,8 @@ class Makanan extends Model
     {
         return $this->belongsTo('App\Kategori', 'id_kategori');
     }
+    public function pemesanan()
+    {
+        return $this->hasMany('App\Pemesanan', 'makanan_id');
+    }
 }
