@@ -43,7 +43,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item control-label">
-                            <a class="nav-link " href="/login">Login User</a>
+                            <a class="text-light nav-link " href="/login">Login User</a>
                         </li>
                     </ul>
                 </div>
