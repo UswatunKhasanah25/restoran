@@ -23,6 +23,7 @@
         <thead>
             <tr>
                 <th>#</th>
+                <th>Nama Pemesan</th>
                 <th>Tanggal</th>
                 <th>Pesanan</th>
                 <th>Jumlah</th>
@@ -34,15 +35,18 @@
             @php $i=1 @endphp
             @foreach ($pemesanans as $order)
             <tr>
+
                 <td>{{ $i++ }}.</td>
+                <td>{{ $order->user->name }}</td>
                 <td>{{ $order->created_at->format('d M, Y') }}</td>
                 <td>{{ $order->makanan->nama }}</td>
                 <td>{{ $order->qty }} Porsi</td>
+                <!-- <td>{{ $order->status }}</td> -->
                 <td>
-                    @if ($order->status == 0)
-                    <label class="label label-warning">Menunggu verifikasi</label>
+                    @if ($order->status == 2)
+                    <label class="label label-warning">Complete</label>
                     @elseif ($order->status == 1)
-                    <label class="label label-info">Pesanan diterima</label>
+                    <label class="label label-info">Pending</label>
                     @endif
                 </td>
                 <td> Rp. {{ number_format($order->total,0,',','.') }},-</td>

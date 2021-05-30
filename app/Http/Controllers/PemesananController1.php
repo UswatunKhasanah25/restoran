@@ -80,6 +80,10 @@ class PemesananController1 extends Controller
             ->route('pending-order')
             ->with('message', 'OK. Pemesanan has been canceled.');
     }
+    public function laporan()
+    {
+        return view('admin/laporan');
+    }
 
     public function print()
     {

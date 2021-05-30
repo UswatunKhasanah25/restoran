@@ -4,7 +4,8 @@
             <div class="input-group">
                 <input type="text" name="q" class="form-control" placeholder="Search...">
                 <span class="input-group-btn">
-                    <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                    <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i
+                            class="fa fa-search"></i>
                     </button>
                 </span>
             </div>
@@ -37,14 +38,16 @@
                     <li><a href="{{route('all-order')}}"><i class="fa fa-circle-o"></i> Complete Order</a></li>
                 </ul>
             </li>
+            <li>
+                <a href="/Laporan"> <i class="menu-icon fa fa-file-pdf-o"></i>Cetak Laporan</a>
+            </li>
             <h3 class="menu-title"></h3><!-- /.menu-title -->
 
             <li>
-                <a href="{{ url('/logout') }}"
-                onclick="event.preventDefault();
+                <a href="{{ url('/logout') }}" onclick="event.preventDefault();
                          document.getElementById('logout-form').submit();">
-                Logout
-            </a>
+                    Logout
+                </a>
             </li>
         </ul>
     </section>
